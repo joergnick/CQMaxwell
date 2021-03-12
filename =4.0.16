@@ -1,0 +1,6 @@
+Requirement already satisfied: numpy in /home/nick/anaconda3/lib/python3.8/site-packages (1.18.5)
+Requirement already satisfied: scipy in /home/nick/anaconda3/lib/python3.8/site-packages (1.5.0)
+Requirement already satisfied: numba in /home/nick/anaconda3/lib/python3.8/site-packages (0.47.0)
+Requirement already satisfied: meshio in /home/nick/anaconda3/lib/python3.8/site-packages (4.3.10)
+Requirement already satisfied: setuptools in /home/nick/anaconda3/lib/python3.8/site-packages (from numba) (49.2.0.post20200714)
+Requirement already satisfied: llvmlite>=0.31.0dev0 in /home/nick/anaconda3/lib/python3.8/site-packages (from numba) (0.33.0+1.g022ab0f)
