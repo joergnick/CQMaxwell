@@ -12,7 +12,7 @@ def create_timepoints(c,N,T):
 
 def create_rhs(grid,dx,N,T,m):
 #	grid=bempp.api.shapes.cube(h=1)
-#
+
 	OrderQF = 8
 
 	#tol= np.finfo(float).eps
@@ -49,11 +49,11 @@ def create_rhs(grid,dx,N,T,m):
 	RT_space = bempp.api.function_space(grid,"RT",0)
 
 	#curl_space = bempp.api.function_space(grid, "RBC", 0)
-	BC_space=bempp.api.function_space(grid, "BC",0)
-	SNC_space=bempp.api.function_space(grid, "SNC",0)
-	BRWG_space=bempp.api.function_space(grid, "B-RWG",0)
-#	div_space=bempp.api.function_space(grid, "B-RWG",0)
-	RBC_space=bempp.api.function_space(grid,"RBC",0)
+	#BC_space=bempp.api.function_space(grid, "BC",0)
+	#SNC_space=bempp.api.function_space(grid, "SNC",0)
+	#BRWG_space=bempp.api.function_space(grid, "B-RWG",0)
+#	#div_space=bempp.api.function_space(grid, "B-RWG",0)
+	#RBC_space=bempp.api.function_space(grid,"RBC",0)
 
 #	curl_space=bempp.api.function_space(grid,"RBC",0)
 	#from bempp.api.operators.boundary.sparse import identity as ident
@@ -67,13 +67,16 @@ def create_rhs(grid,dx,N,T,m):
 	time_points=create_timepoints(c_RK,N,T)
 	for j in range(m*N):
 		t=time_points[0,j]
+
 		def incident_field(x):
 			return np.array([np.exp(-50*(x[2]-t+2)**2), 0. * x[2], 0. * x[2]])
 			#return np.array([np.exp(-200*(x[2]-t+2)**2), 0. * x[2], 0. * x[2]])
 
+		@bempp.api.real_callable
 		def tangential_trace(x, n, domain_index, result):
 			result[:] = np.cross(n,np.cross(incident_field(x), n))
 
+		@bempp.api.real_callable
 		def curl_trace(x,n,domain_index,result):
 			curlU=np.array([ 0. * x[2],-100*(x[2]-t+2)*np.exp(-50*(x[2]-t+2)**2), 0. * x[2]])
 			result[:] = np.cross(curlU , n)
@@ -246,7 +249,7 @@ T=6
 #N_ref=2**4
 N_ref=2**11
 tt_ref=np.linspace(0,T,N_ref+1)
-#dx_ref=np.sqrt(2)**(-4)
+#dx_ref=np.sqrt(2)**(0)
 dx_ref=np.sqrt(2)**(-9)
 m=3
 
