@@ -1,4 +1,3 @@
-# written by Jörg Nick , nick@na.uni-tuebingen.de
 
 The following scripts lead to the reconstruction of the images in the preprint "Time-dependent electromagnetic scattering from thin layers". 
 
@@ -38,3 +37,4 @@ Scipy version : 0.17.0
 Numpy version : 1.11.0
 Matplotlib version : 1.5.1
 
+# written by Jörg Nick , nick@na.uni-tuebingen.de
